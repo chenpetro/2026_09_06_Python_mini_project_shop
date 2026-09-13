@@ -1,95 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shop - Add New Product</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url_for('main_handler') }}">👟 Online Sneakers Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main_handler') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('products_handler') }}">All Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_product') }}">Place Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url_for('add_new_product_page') }}">Add New Product</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Content -->
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="card shadow border-0 rounded-3">
-                    <div class="card-header bg-success text-white text-center py-3">
-                        <h4 class="mb-0 fw-bold">Add New Product to Shop</h4>
-                    </div>
-                    <div class="card-body p-4">
-                        <!-- Flash Messages -->
-                        {% with messages = get_flashed_messages(with_categories=true) %}
-                            {% if messages %}
-                                {% for category, message in messages %}
-                                    <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
-                                        {{ message }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
+{% block title %}Online Shop - Add New Product{% endblock %}
 
-                        <form action="{{ url_for('add_new_product_route') }}" method="POST" enctype="multipart/form-data">
-                            <!-- Product Name -->
-                            <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Product Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Nike Air Max 90" required>
-                            </div>
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h4 class="mb-0 fw-bold">Add New Product to Shop</h4>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
 
-                            <!-- Description -->
-                            <div class="mb-3">
-                                <label for="description" class="form-label fw-semibold">Description</label>
-                                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product details..." required></textarea>
-                            </div>
+                    <form action="{{ url_for('add_new_product_route') }}" method="POST" enctype="multipart/form-data">
+                        <!-- Product Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">Product Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Nike Air Max 90" required>
+                        </div>
 
-                            <!-- Price -->
-                            <div class="mb-3">
-                                <label for="price" class="form-label fw-semibold">Price (UAH)</label>
-                                <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="4300.00" required>
-                            </div>
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-semibold">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product details..." required></textarea>
+                        </div>
 
-                            <!-- Product Image -->
-                            <div class="mb-4">
-                                <label for="image" class="form-label fw-semibold">Product Image (PNG, JPG, JPEG)</label>
-                                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
-                            </div>
+                        <!-- Price -->
+                        <div class="mb-3">
+                            <label for="price" class="form-label fw-semibold">Price (UAH)</label>
+                            <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="4300.00" required>
+                        </div>
 
-                            <!-- Submit Button -->
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-success btn-lg fw-bold">Save New Product</button>
-                            </div>
-                        </form>
-                    </div>
+                        <!-- Product Image -->
+                        <div class="mb-4">
+                            <label for="image" class="form-label fw-semibold">Product Image (PNG, JPG, JPEG)</label>
+                            <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg fw-bold">Save New Product</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}

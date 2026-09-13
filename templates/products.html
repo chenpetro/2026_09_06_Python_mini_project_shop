@@ -1,90 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shop - Products</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url_for('main_handler') }}">👟 Online Sneakers Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main_handler') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url_for('products_handler') }}">All Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_product') }}">Place Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_new_product_page') }}">Add New Product</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Content -->
-    <div class="container my-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold">Available Products</h2>
-            <a href="{{ url_for('add_new_product_page') }}" class="btn btn-success">+ Add New Product</a>
-        </div>
+{% block title %}Online Shop - Products{% endblock %}
 
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+{% block content %}
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Available Products</h2>
+        <a href="{{ url_for('add_new_product_page') }}" class="btn btn-success">+ Add New Product</a>
+    </div>
 
-        <!-- Products Grid -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% if products %}
-                {% for product in products %}
-                    <div class="col">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="bg-white p-3 text-center rounded-top" style="height: 220px;">
-                                <img src="/static/{{ product.image_filename.lstrip('/') }}" 
-                                     class="img-fluid h-100" 
-                                     alt="{{ product.name }}" 
-                                     style="object-fit: contain;"
-                                     onerror="this.src='https://via.placeholder.com/300x200?text=No+Image';">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold text-dark">{{ product.name }}</h5>
-                                <p class="card-text text-muted flex-grow-1">{{ product.description }}</p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fs-4 fw-bold text-primary">{{ product.price }} UAH</span>
-                                    <a href="{{ url_for('add_product', product_id=product.id) }}" class="btn btn-primary px-3">Order Now</a>
-                                </div>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Products Grid -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if products %}
+            {% for product in products %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="bg-white p-3 text-center rounded-top" style="height: 220px;">
+                            <img src="/static/{{ product.image_filename.lstrip('/') }}" 
+                                 class="img-fluid h-100" 
+                                 alt="{{ product.name }}" 
+                                 style="object-fit: contain;"
+                                 onerror="this.src='https://via.placeholder.com/300x200?text=No+Image';">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-dark">{{ product.name }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ product.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fs-4 fw-bold text-primary">{{ product.price }} UAH</span>
+                                <a href="{{ url_for('add_product', product_id=product.id) }}" class="btn btn-primary px-3">Order Now</a>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            {% else %}
-                <div class="col-12 text-center py-5">
-                    <p class="text-muted fs-5">No products found in the catalog.</p>
-                    <a href="{{ url_for('add_new_product_page') }}" class="btn btn-primary">Add the First Product</a>
                 </div>
-            {% endif %}
-        </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No products found in the catalog.</p>
+                <a href="{{ url_for('add_new_product_page') }}" class="btn btn-primary">Add the First Product</a>
+            </div>
+        {% endif %}
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}

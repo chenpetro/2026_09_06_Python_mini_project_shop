@@ -1,84 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shop - Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url_for('main_handler') }}">👟 Online Sneakers Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url_for('main_handler') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('products_handler') }}">All Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_product') }}">Place Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_new_product_page') }}">Add New Product</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Main Content -->
-    <div class="container my-5">
-        <!-- Hero Section -->
-        <div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
-            <h1 class="display-4 fw-bold text-primary">Welcome to Online Sneakers Shop</h1>
-            <p class="lead text-secondary mt-3">
-                Discover top-tier footwear from world-renowned brands including Nike, Adidas, and Puma.
-            </p>
-            <hr class="my-4">
-            <p>Quality, comfort, and style delivered right to your doorstep.</p>
-            <a class="btn btn-primary btn-lg px-4 me-md-2 fw-semibold" href="{{ url_for('products_handler') }}">Browse Products</a>
-            <a class="btn btn-outline-secondary btn-lg px-4 fw-semibold" href="{{ url_for('add_product') }}">Order Now</a>
-        </div>
+{% block title %}Online Shop - Home{% endblock %}
 
-        <!-- General Info Cards -->
-        <div class="row g-4 text-center mt-2">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-3">
-                    <div class="card-body">
-                        <div class="fs-1 text-primary mb-2">🚚</div>
-                        <h5 class="card-title fw-bold">Fast & Free Shipping</h5>
-                        <p class="card-text text-muted">Quick delivery options available nationwide for all sneaker orders.</p>
-                    </div>
+{% block content %}
+<div class="container my-5">
+    <!-- Hero Section -->
+    <div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
+        <h1 class="display-4 fw-bold text-primary">Welcome to Online Sneakers Shop</h1>
+        <p class="lead text-secondary mt-3">
+            Discover top-tier footwear from world-renowned brands including Nike, Adidas, and Puma.
+        </p>
+        <hr class="my-4">
+        <p>Quality, comfort, and style delivered right to your doorstep.</p>
+        <a class="btn btn-primary btn-lg px-4 me-md-2 fw-semibold" href="{{ url_for('products_handler') }}">Browse Products</a>
+        <a class="btn btn-outline-secondary btn-lg px-4 fw-semibold" href="{{ url_for('add_product') }}">Order Now</a>
+    </div>
+
+    <!-- General Info Cards -->
+    <div class="row g-4 text-center mt-2">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-3">
+                <div class="card-body">
+                    <div class="fs-1 text-primary mb-2">🚚</div>
+                    <h5 class="card-title fw-bold">Fast & Free Shipping</h5>
+                    <p class="card-text text-muted">Quick delivery options available nationwide for all sneaker orders.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-3">
-                    <div class="card-body">
-                        <div class="fs-1 text-primary mb-2">💯</div>
-                        <h5 class="card-title fw-bold">100% Authentic</h5>
-                        <p class="card-text text-muted">All sneakers are guaranteed original and sourced directly from official suppliers.</p>
-                    </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-3">
+                <div class="card-body">
+                    <div class="fs-1 text-primary mb-2">💯</div>
+                    <h5 class="card-title fw-bold">100% Authentic</h5>
+                    <p class="card-text text-muted">All sneakers are guaranteed original and sourced directly from official suppliers.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-3">
-                    <div class="card-body">
-                        <div class="fs-1 text-primary mb-2">📞</div>
-                        <h5 class="card-title fw-bold">24/7 Support</h5>
-                        <p class="card-text text-muted">Our customer service team is always here to assist you with your orders.</p>
-                    </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-3">
+                <div class="card-body">
+                    <div class="fs-1 text-primary mb-2">📞</div>
+                    <h5 class="card-title fw-bold">24/7 Support</h5>
+                    <p class="card-text text-muted">Our customer service team is always here to assist you with your orders.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}
