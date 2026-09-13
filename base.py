@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, String, Float, Integer, ForeignKey, Boolean
-from sqlalchemy.orm import Mapped, Session, mapped_column, relationship, sessionmaker, DeclarativeBase
+from sqlalchemy.orm import Mapped, Session, mapped_column, relationship, sessionmaker, DeclarativeBase, joinedload
 
 from pydantic import ValidationError
 
@@ -104,6 +104,15 @@ def get_all_products():
 def get_product_by_id(id):
     with SessionLocal() as session:
         return session.get(Product, id)
+
+
+def get_all_orders():
+    with SessionLocal() as session:
+        try:
+            return session.query(Order).options(joinedload(Order.product)).all()
+        except Exception as e:
+            print(f"Error fetching orders: {e}")
+            return []
 
 
 init_db()

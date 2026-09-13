@@ -23,35 +23,28 @@
                         {% endif %}
                     {% endwith %}
 
-                    <form action="{{ url_for('add_new_product_route') }}" method="POST" enctype="multipart/form-data">
-                        <!-- Product Name -->
+                    <form action="/add_new_product/" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="name" class="form-label fw-semibold">Product Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Nike Air Max 90" required>
+                            <label for="productName" class="form-label fw-semibold">Name: (at least 5 symbols)</label>
+                            <input type="text" class="form-control" id="productName" name="name" required>
                         </div>
 
-                        <!-- Description -->
                         <div class="mb-3">
-                            <label for="description" class="form-label fw-semibold">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product details..." required></textarea>
+                            <label for="productDescription" class="form-label fw-semibold">Description: (at least 10 symbols)</label>
+                            <input type="text" class="form-control" id="productDescription" name="description" required>
                         </div>
 
-                        <!-- Price -->
                         <div class="mb-3">
-                            <label for="price" class="form-label fw-semibold">Price (UAH)</label>
-                            <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="4300.00" required>
+                            <label for="productPrice" class="form-label fw-semibold">Price (₴ UAH):</label>
+                            <input type="" class="form-control" id="productPrice" name="price" required>
                         </div>
 
-                        <!-- Product Image -->
                         <div class="mb-4">
-                            <label for="image" class="form-label fw-semibold">Product Image (PNG, JPG, JPEG)</label>
-                            <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+                            <label for="productImage" class="form-label fw-semibold">Product image:</label>
+                            <input type="file" class="form-control" id="productImage" name="image" required>
                         </div>
 
-                        <!-- Submit Button -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg fw-bold">Save New Product</button>
-                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold">Add</button>
                     </form>
                 </div>
             </div>

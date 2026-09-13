@@ -23,7 +23,10 @@
                         <a class="nav-link {% if request.endpoint == 'products_handler' %}active{% endif %}" href="{{ url_for('products_handler') }}">All Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'add_product' %}active{% endif %}" href="{{ url_for('add_product') }}">Place Order</a>
+                        <a class="nav-link {% if request.endpoint == 'orders_handler' %}active{% endif %}" href="{{ url_for('orders_handler') }}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'make_order' %}active{% endif %}" href="{{ url_for('make_order') }}">Place Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'add_new_product_page' %}active{% endif %}" href="{{ url_for('add_new_product_page') }}">Add New Product</a>
